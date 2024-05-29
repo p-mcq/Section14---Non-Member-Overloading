@@ -1,25 +1,22 @@
 #include <iostream>
 #include "MyString.h"
 
-using std::cout, std::endl, std::boolalpha;
+using std::cout, std::endl, std::boolalpha, std::cin;
 
 int main()
 {
-    cout << boolalpha << endl;
-    MyString a{"Hello"};
-    MyString b{"World"};
-    MyString c{a};
-    cout << "------------------" << endl;
-    cout << (a == c) << endl; // true
-    cout << (a == b) << endl; // false
-    cout << "------------------" << endl;
+    MyString hello{"Hello"};
+    MyString blank;
 
-    MyString concat = a + b;
-    cout << concat.display() << endl; // HelloWorld
-    cout << "------------------" << endl;
+    cout << hello << endl;
+    cout << "Please enter a string:" << endl;
+    cin >> blank;
+    cout << "You typed: " << blank << endl;
 
-    MyString lower = -concat;
-    cout << lower.display() << endl; // helloworld
-    cout << "------------------" << endl;
+    cout << "Please enter two word separated by a space: ";
+    cin >> hello >> blank;
+
+    cout << "The first word is: " << hello << endl;
+    cout << "The second word is: " << blank << endl;
     return 0;
 }

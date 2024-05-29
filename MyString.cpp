@@ -1,5 +1,6 @@
 #include "MyString.h"
 #include <cstring>
+#include <istream>
 
 MyString::MyString() : str(nullptr)
 {
@@ -88,30 +89,17 @@ int MyString::getLengthOfString() const
     return strlen(str);
 }
 
-bool operator==(const MyString &lhs, const MyString &rhs)
+std::ostream &operator<<(std::ostream &out, const MyString &rhs)
 {
-    return strcmp(lhs.str, rhs.str) == 0;
+    out << "The String is: " << rhs.str;
+    return out;
 }
 
-MyString operator-(const MyString &obj)
+std::istream &operator>>(std::istream &in, MyString &rhs)
 {
-    char *lowercaseStr = new char[strlen(obj.str) + 1];
-    strcpy(lowercaseStr, obj.str);
-    for (size_t i = 0; i < strlen(lowercaseStr); i++)
-    {
-        lowercaseStr[i] = tolower(lowercaseStr[i]);
-    }
-    MyString temp{lowercaseStr};
-    delete[] lowercaseStr;
-    return temp;
-}
-
-MyString operator+(const MyString &lhs, const MyString &rhs)
-{
-    char *concatenatedStr = new char[strlen(lhs.str) + strlen(rhs.str) + 1];
-    strcpy(concatenatedStr, lhs.str);
-    strcat(concatenatedStr, rhs.str);
-    MyString temp{concatenatedStr};
-    delete[] concatenatedStr;
-    return temp;
+    char *stringToInsert = new char[1000];
+    in >> stringToInsert;
+    rhs = MyString{stringToInsert};
+    delete[] stringToInsert;
+    return in;
 }

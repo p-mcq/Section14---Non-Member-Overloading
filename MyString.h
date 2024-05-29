@@ -5,9 +5,10 @@
 using std::string;
 class MyString
 {
-    friend bool operator==(const MyString &lhs, const MyString &rhs);
-    friend MyString operator-(const MyString &obj);
-    friend MyString operator+(const MyString &lhs, const MyString &rhs);
+    // Overload the stream insertion operator
+    friend std::ostream &operator<<(std::ostream &out, const MyString &rhs);
+    // Overload the stream extraction operator
+    friend std::istream &operator>>(std::istream &in, MyString &rhs);
 
 private:
     char *str;
